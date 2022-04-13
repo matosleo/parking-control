@@ -6,6 +6,8 @@ import java.time.LocalDateTime
 
 class ParkingSpotDto {
 
+    UUID id
+
     @NotBlank
     String parking_spot_number
 
@@ -30,6 +32,8 @@ class ParkingSpotDto {
 
     @NotBlank
     String block
+
+    LocalDateTime registration_date
 
     void setRegistration_date(LocalDateTime registration_date) {
         this.registration_date = registration_date
