@@ -35,8 +35,4 @@ class ParkingSpotDto {
 
     LocalDateTime registration_date
 
-    void setRegistration_date(LocalDateTime registration_date) {
-        this.registration_date = registration_date
-    }
-
 }

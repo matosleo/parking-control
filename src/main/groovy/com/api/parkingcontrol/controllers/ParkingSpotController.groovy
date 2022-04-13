@@ -26,13 +26,8 @@ class ParkingSpotController {
     ParkingSpotService parkingSpotService
 
     @PostMapping
-    ResponseEntity<ParkingSpotDto> saveParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto) {
-        parkingSpotDto.setRegistration_date(LocalDateTime.now(ZoneId.of("UTC")))
-        def parkingSpotModel = new ParkingSpotModel()
-        BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel)
-        def savedParkingSpot = parkingSpotService.save(parkingSpotModel)
-        BeanUtils.copyProperties(savedParkingSpot, parkingSpotDto)
-        return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotDto)
+    ResponseEntity<ParkingSpotDto> createParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.create(parkingSpotDto))
     }
 
 

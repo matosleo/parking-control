@@ -1,5 +1,7 @@
 package com.api.parkingcontrol.models
 
+import org.hibernate.annotations.CreationTimestamp
+
 import javax.persistence.*
 import java.time.LocalDateTime
 
@@ -27,6 +29,7 @@ class ParkingSpotModel implements Serializable {
     String color_car
 
     @Column(nullable = false)
+    @CreationTimestamp
     LocalDateTime registration_date
 
     @Column(nullable = false, length = 130)
