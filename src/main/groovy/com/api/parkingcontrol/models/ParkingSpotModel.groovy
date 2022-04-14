@@ -14,26 +14,26 @@ class ParkingSpotModel implements Serializable {
     UUID id
 
     @Column(nullable = false, unique = true, length = 10)
-    String parking_spot_number
+    String parkingSpotNumber
 
     @Column(nullable = false, unique = true, length = 7)
-    String license_plate_car
+    String licensePlateCar
 
     @Column(nullable = false, length = 70)
-    String brand_car
+    String brandCar
 
     @Column(nullable = false, length = 70)
-    String model_car
+    String modelCar
 
     @Column(nullable = false, length = 70)
-    String color_car
+    String colorCar
 
     @Column(nullable = false)
     @CreationTimestamp
-    LocalDateTime registration_date
+    LocalDateTime registrationDate
 
     @Column(nullable = false, length = 130)
-    String responsible_name
+    String responsibleName
 
     @Column(nullable = false, length = 30)
     String apartment

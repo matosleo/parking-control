@@ -9,23 +9,25 @@ class ParkingSpotDto {
     UUID id
 
     @NotBlank
-    String parking_spot_number
+    String parkingSpotNumber
 
     @NotBlank
     @Size(max = 7)
-    String license_plate_car
+    String licensePlateCar
 
     @NotBlank
-    String brand_car
+    String brandCar
 
     @NotBlank
-    String model_car
+    String modelCar
 
     @NotBlank
-    String color_car
+    String colorCar
+
+    LocalDateTime registrationDate
 
     @NotBlank
-    String responsible_name
+    String responsibleName
 
     @NotBlank
     String apartment
@@ -33,6 +35,6 @@ class ParkingSpotDto {
     @NotBlank
     String block
 
-    LocalDateTime registration_date
+
 
 }

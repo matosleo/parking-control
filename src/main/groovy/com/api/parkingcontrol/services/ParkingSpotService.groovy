@@ -1,6 +1,7 @@
 package com.api.parkingcontrol.services
 
 import com.api.parkingcontrol.dtos.ParkingSpotDto
+import com.api.parkingcontrol.exceptions.ExistsByLicensePlateCarException
 import com.api.parkingcontrol.models.ParkingSpotModel
 import com.api.parkingcontrol.repositories.ParkingSpotRepository
 import org.springframework.beans.BeanUtils
@@ -17,6 +18,10 @@ class ParkingSpotService {
 
     @Transactional
     ParkingSpotDto create(ParkingSpotDto parkingSpotDto) {
+        if(parkingSpotRepository.existsByLicensePlateCar(parkingSpotDto.licensePlateCar)) {
+            throw new ExistsByLicensePlateCarException()
+        }
+
         def parkingSpotModel = new ParkingSpotModel()
         BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel)
         def parkingSpotCreated = parkingSpotRepository.save(parkingSpotModel)
