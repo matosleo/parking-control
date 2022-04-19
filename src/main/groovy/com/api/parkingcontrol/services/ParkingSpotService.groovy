@@ -1,7 +1,9 @@
 package com.api.parkingcontrol.services
 
 import com.api.parkingcontrol.dtos.ParkingSpotDto
+import com.api.parkingcontrol.exceptions.ExistsByApartmentAndBlockException
 import com.api.parkingcontrol.exceptions.ExistsByLicensePlateCarException
+import com.api.parkingcontrol.exceptions.ExistsByParkingSpotNumberException
 import com.api.parkingcontrol.models.ParkingSpotModel
 import com.api.parkingcontrol.repositories.ParkingSpotRepository
 import org.springframework.beans.BeanUtils
@@ -20,6 +22,14 @@ class ParkingSpotService {
     ParkingSpotDto create(ParkingSpotDto parkingSpotDto) {
         if(parkingSpotRepository.existsByLicensePlateCar(parkingSpotDto.licensePlateCar)) {
             throw new ExistsByLicensePlateCarException()
+        }
+
+        if(parkingSpotRepository.existsByParkingSpotNumber(parkingSpotDto.parkingSpotNumber)) {
+            throw new ExistsByParkingSpotNumberException()
+        }
+
+        if(parkingSpotRepository.existsByApartmentAndBlock(parkingSpotDto.apartment, parkingSpotDto.block)) {
+            throw new ExistsByApartmentAndBlockException()
         }
 
         def parkingSpotModel = new ParkingSpotModel()

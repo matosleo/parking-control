@@ -5,6 +5,6 @@ import org.springframework.web.server.ResponseStatusException
 
 class ExistsByLicensePlateCarException extends ResponseStatusException {
     ExistsByLicensePlateCarException() {
-        super(HttpStatus.BAD_REQUEST, "Já existe uma vaga de estacionamento cadastrada com esse código de placa veicular.")
+        super(HttpStatus.CONFLICT, "Licence plate car is already in use!")
     }
 }
