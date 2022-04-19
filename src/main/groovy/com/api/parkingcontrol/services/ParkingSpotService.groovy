@@ -4,10 +4,12 @@ import com.api.parkingcontrol.dtos.ParkingSpotDto
 import com.api.parkingcontrol.exceptions.ExistsByApartmentAndBlockException
 import com.api.parkingcontrol.exceptions.ExistsByLicensePlateCarException
 import com.api.parkingcontrol.exceptions.ExistsByParkingSpotNumberException
+import com.api.parkingcontrol.exceptions.ParkingSpotNotFoundException
 import com.api.parkingcontrol.models.ParkingSpotModel
 import com.api.parkingcontrol.repositories.ParkingSpotRepository
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 import javax.transaction.Transactional
@@ -41,6 +43,10 @@ class ParkingSpotService {
 
     List<ParkingSpotModel> findAll() {
         return parkingSpotRepository.findAll()
+    }
+
+    ParkingSpotModel findOne(UUID id) {
+        return parkingSpotRepository.findById(id).orElseThrow{new ParkingSpotNotFoundException()}
     }
 
 }
