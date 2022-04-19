@@ -13,4 +13,6 @@ interface ParkingSpotRepository extends JpaRepository<ParkingSpotModel, UUID> {
 
     boolean existsByApartmentAndBlock(String apartment, String block)
 
+    List<ParkingSpotModel> findAll()
+
 }

@@ -39,4 +39,8 @@ class ParkingSpotService {
         return parkingSpotDto
     }
 
+    List<ParkingSpotModel> findAll() {
+        return parkingSpotRepository.findAll()
+    }
+
 }
