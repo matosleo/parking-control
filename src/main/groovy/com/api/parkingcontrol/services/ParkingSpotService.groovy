@@ -49,4 +49,11 @@ class ParkingSpotService {
         return parkingSpotRepository.findById(id).orElseThrow{new ParkingSpotNotFoundException()}
     }
 
+    @Transactional
+    String delete(UUID id) {
+        def parkingSpot = this.findOne(id)
+        parkingSpotRepository.delete(parkingSpot)
+        return "Parking Spot deleted"
+    }
+
 }
