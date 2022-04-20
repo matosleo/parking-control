@@ -9,7 +9,6 @@ import com.api.parkingcontrol.models.ParkingSpotModel
 import com.api.parkingcontrol.repositories.ParkingSpotRepository
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 import javax.transaction.Transactional
@@ -54,6 +53,21 @@ class ParkingSpotService {
         def parkingSpot = this.findOne(id)
         parkingSpotRepository.delete(parkingSpot)
         return "Parking Spot deleted"
+    }
+
+    @Transactional
+    ParkingSpotDto update(UUID id, ParkingSpotDto parkingSpotDto) {
+        def parkingSpot = this.findOne(id)
+
+        def parkingSpotModel = new ParkingSpotModel()
+
+        parkingSpotDto.setId(id)
+        parkingSpotDto.setRegistrationDate(parkingSpot.getRegistrationDate())
+        BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel)
+
+        def parkingSpotUpdated = parkingSpotRepository.save(parkingSpotModel)
+        BeanUtils.copyProperties(parkingSpotModel, parkingSpotDto)
+        return parkingSpotDto
     }
 
 }
